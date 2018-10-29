@@ -62,13 +62,14 @@ class Connection(object):
             in settings.LDAP_AUTH_USER_LOOKUP_FIELDS
         }
         # Update or create the user.
-        user, created = User.objects.update_or_create(
-            defaults=user_fields,
+        user, created = User.objects.get_or_create(
             **user_lookup
         )
         # If the user was created, set them an unusable password.
         if created:
             user.set_unusable_password()
+            for attr, value in user_fields.items():
+                setattr(user, attr, value)
             user.save()
         # Update relations
         import_func(settings.LDAP_AUTH_SYNC_USER_RELATIONS)(user, attributes)
