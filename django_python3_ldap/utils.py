@@ -113,6 +113,11 @@ def sync_user_relations(user, ldap_attributes):
     pass
 
 
+def after_sync_command(list_users):
+    # do nothing by default
+    pass
+
+
 def format_search_filters(ldap_fields):
     return [
         "({attribute_name}={field_value})".format(

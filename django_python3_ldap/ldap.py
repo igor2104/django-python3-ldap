@@ -61,7 +61,12 @@ class Connection(object):
             for field_name
             in settings.LDAP_AUTH_USER_LOOKUP_FIELDS
         }
+
         # Update or create the user.
+        # user, created = User.objects.update_or_create(
+        #     defaults=user_fields,
+        #     **user_lookup
+        # )
         user, created = User.objects.get_or_create(
             **user_lookup
         )

@@ -85,6 +85,11 @@ class LazySettings(object):
         default="django_python3_ldap.utils.sync_user_relations",
     )
 
+    LDAP_AUTH_AFTER_SYNC_COMMAND = LazySetting(
+        name="LDAP_AUTH_AFTER_SYNC_COMMAND",
+        default="django_python3_ldap.utils.after_sync_command",
+    )
+
     LDAP_AUTH_FORMAT_USERNAME = LazySetting(
         name="LDAP_AUTH_FORMAT_USERNAME",
         default="django_python3_ldap.utils.format_username_openldap",
